@@ -79,15 +79,6 @@ var evalGuess = function (solution, guess) {
             out++;
         }
     }
-    for (var i = 0; i < holes; i++) {
-        for (var j = 0; j < holes; j++) {
-            if (guess[i] == tmp[j]) {
-                out++;
-                guess[i] = -2;
-                tmp[j] = -1;
-            }
-        }
-    }
 
     return {inplace: inp, outplace: out};
 };
