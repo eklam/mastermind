@@ -71,6 +71,9 @@ var evalGuess = function (solution, guess) {
     var inp = 0;
     var out = 0;
 
+    console.log('eval sol: ' + solution)
+    console.log('eval gss: ' + guess)
+
     for (var i = 0; i < holes; i++) {
         if (solution[i] == guess[i]) {
             inp++;
@@ -78,6 +81,8 @@ var evalGuess = function (solution, guess) {
             out++;
         }
     }
+
+    console.log(JSON.stringify({ inplace: inp, outplace: out }))
 
     return { inplace: inp, outplace: out };
 };

@@ -5,6 +5,9 @@
 .container {
   width: 970px !important;
 }
+body > .container {
+    padding-bottom: 125px;
+}
 .demo-headline {
   padding: 50px 0 60px;
   text-align: center;

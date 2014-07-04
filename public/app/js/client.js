@@ -7,7 +7,7 @@ function Guess(_array) {
     var self = this;
     self.array = ko.observableArray([]);
     for (var i = 0; i < holes; i++) {
-        self.array.push(_array != null && _array[i] != null ? _array[i] : 0);
+        self.array.push(_array != null && _array[i] != null ? _array[i] : i);
     }
 
     self.eval = ko.observable({
@@ -45,7 +45,7 @@ function AppViewModel() {
     self.arrayToNum = function (array) {
         var num = 1111;
         for (var i = 0; i < holes; i++) {
-            num += (holes - i) * array[i];
+            num += Math.pow(10, holes - i-1) * array[i];
         }
         return num;
     }
@@ -79,7 +79,8 @@ function AppViewModel() {
                 lastGuess().eval().out(data.eval.outplace);
 
                 if (data.solution) {
-                    self.solution(new Guess(data.solution))
+                    self.solution(new Guess(data.solution));
+                    self.isEndgame(true);
                 }    
             });
         }

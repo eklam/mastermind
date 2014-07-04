@@ -54,5 +54,9 @@ console.log(evalGuess([0, 4, 2, 3], [0, 4, 2, 3]).inplace == holes ? 'ok' : 'no'
     var e = evalGuess([0, 1, 2, 3], [5, 5, 2, 4]);
     console.log(e.inplace == 1 && e.outplace == 0 ? 'ok' : 'no: ' + JSON.stringify(e));
 })();
+(function () {
+    var e = evalGuess([1, 4, 3, 2], [4, 3, 1, 2]);
+    console.log(e.inplace == 1 && e.outplace == 3 ? 'ok' : 'no: ' + JSON.stringify(e));
+})();
 
     

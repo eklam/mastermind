@@ -73,6 +73,7 @@
     <Compile Include="public\flat-ui\js\typeahead.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\users.js" />
+    <Compile Include="test.js" />
     <Content Include="package.json" />
     <Content Include="public\app\css\demo.css" />
     <Content Include="public\bootstrap\css\bootstrap-docs.css" />
