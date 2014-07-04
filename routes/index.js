@@ -67,20 +67,19 @@ var numToArray = function (num) {
     return array;
 };
 
-/* taken from https://packages.debian.org/jessie/gnome-mastermind */
 var evalGuess = function (solution, guess) {
     var inp = 0;
     var out = 0;
-    
+
     for (var i = 0; i < holes; i++) {
         if (solution[i] == guess[i]) {
             inp++;
-        } else if (solution.indexOf(guess[i]) >= 0) {
+        } else if (guess.indexOf(solution[i]) >= 0) {
             out++;
         }
     }
 
-    return {inplace: inp, outplace: out};
+    return { inplace: inp, outplace: out };
 };
 
 router.get('/eval/:key/:guess', function (req, res) {
