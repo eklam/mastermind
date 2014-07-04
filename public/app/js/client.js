@@ -50,26 +50,37 @@ function AppViewModel() {
         return num;
     }
 
-    self.solution = ko.observable()
+    self.isEndgame = ko.observable(false);
+    self.continueGame = ko.computed(function () {
+        return !self.isEndgame();
+    });
+
+    self.solution = ko.observable(new Guess());
 
     self.tryGuess = function () {
-        if (self.tries().length > 0) {
-            var a = self.currentGuess().array();
 
-            self.playerGuesses.push(new Guess(a));
+        console.log('Remaining tries: ' + self.tries().length);
+
+        self.isEndgame(self.tries().length == 0);
+
+        if (self.tries().length >= 0) {
+            var _array = self.currentGuess().array();
+
+            var lastGuess = ko.observable(new Guess(_array));
+
+            self.playerGuesses.push(lastGuess);
             self.tries.pop();
 
-            $.getJSON("/eval/" + publicKey + "/" + self.arrayToNum(a), function (data) {
+            $.getJSON("/eval/" + publicKey + "/" + self.arrayToNum(_array), function (data) {
+                console.log('data: ')
+                console.log(data)
+
+                lastGuess().eval().inp(data.eval.inplace);
+                lastGuess().eval().out(data.eval.outplace);
+
                 if (data.solution) {
                     self.solution(new Guess(data.solution))
-                } else {
-                    var index = self.playerGuesses().length - 1;
-
-                    var lastGuess = self.playerGuesses()[index];
-
-                    lastGuess.eval().inp(data.eval.inplace);
-                    lastGuess.eval().out(data.eval.outplace);
-                }
+                }    
             });
         }
     }

@@ -16,13 +16,26 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
-var generateProblem = function() {
+var generateProblem = function () {
+    var available = range(holes);
     var array = [];
     for (var i = 0; i < holes; i++) {
-        array.push(randomInt(0, colors));
+
+        var index = randomInt(0, available.length);
+
+        array.push(available[index]);
+
+        available.splice(index, 1);
     }
     return array;
 };
+
+var range = function (limit) {
+    var rang = [];
+    for (var i = 0; i < limit; i++)
+        rang.push(i);
+    return rang;
+}
 
 router.get('/problem', function (req, res) {
     var key = uuid.v4();
@@ -30,7 +43,7 @@ router.get('/problem', function (req, res) {
 
     var games = req.session.problems || {};
 
-    games[key] = { problem: problemArray, tries: 10 };
+    games[key] = { problem: problemArray, tries: 10-1 };
 
     req.session.games = games;
 
@@ -90,13 +103,13 @@ router.get('/eval/:key/:guess', function (req, res) {
 
     var game = games[key]
 
-    if (game.tries > 0) {
+    if (game.tries >= 0) {
         game.tries--;
 
         result = evalGuess(game.problem, numToArray(guess));
     } 
 
-    var revealSolution = result.inplace >= holes || games.tries == 0;
+    var revealSolution = game.tries < 0 || result.inplace >= holes;
 
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({
@@ -107,21 +120,4 @@ router.get('/eval/:key/:guess', function (req, res) {
     }, null, 3));
 });
 
-
-
 module.exports = router;
-
-    // Geracao problema
-
-    // no server, gerar dois numeros random: seed(private-key), e public-key usar esse seed para gerar o problem_random
-    // gerar um problema dinamico, usando o problem_random
-    // gravar session, Session[public-key] = { seed, tentativas(20) }
-    // escrever o public-key no cookie
-
-    // Vlidar guess
-
-    // client envia guess aberto, junto com public-key
-    // server pega public-key, procura na session o seed
-    // regerar problema com o seed
-    // validar problema, descrescer tentativas
-    // retornar guess validado

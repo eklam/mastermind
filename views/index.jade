@@ -29,20 +29,22 @@ html(lang="en")
               a.btn.btn-block.btn-lg(data-bind="text: $data+1, css: $parent.class($data)") 
           .col-xs-2
             a.btn.btn-block.btn-lg.btn-default
+              &nbsp;
               span(data-bind="foreach: range(eval().inp())")
                 span.fui-checkbox-checked
               span(data-bind="foreach: range(eval().out())")
                 span.fui-checkbox-unchecked
-      .row.demo-row.teste.current(data-bind="with: currentGuess")
-        .col-xs-2
-        .col-xs-1(style="text-align: right;")
-          span.fui-arrow-right(style="padding-top: 7px;")
-        div(data-bind="foreach: array()")
-          .col-xs-1
-            a.btn.btn-block.btn-lg.btn-default(data-bind="text: $data+1, click: $parent.change, css: $parent.class($data)")
-        .col-xs-2
-          a.btn.btn-block.btn-lg.btn-puzzle(data-bind="click: $root.tryGuess")
-            span Try Guess
+      div(data-bind="visible: continueGame")
+        .row.demo-row.teste.current(data-bind="with: currentGuess")
+          .col-xs-2
+          .col-xs-1(style="text-align: right;")
+            span.fui-arrow-right(style="padding-top: 7px;")
+          div(data-bind="foreach: array()")
+            .col-xs-1
+              a.btn.btn-block.btn-lg.btn-default(data-bind="text: $data+1, click: $parent.change, css: $parent.class($data)")
+          .col-xs-2
+            a.btn.btn-block.btn-lg.btn-puzzle(data-bind="click: $root.tryGuess")
+              span Try Guess
       div(data-bind="foreach: tries()")
         .row.demo-row.teste
           .col-xs-3
@@ -51,11 +53,16 @@ html(lang="en")
               a.btn.btn-block.btn-lg.btn-default &#160;
           .col-xs-2
             a.btn.btn-block.btn-lg.btn-default &#160;
-      .row.demo-row.teste(data-bind="with: currentGuess")
+      .row.demo-row.teste(data-bind="with: solution")
         .col-xs-3
-        div(data-bind="foreach: array()")
-          .col-xs-1
-            a.btn.btn-block.btn-lg.btn-puzzle ?
+        div(data-bind="visible: $root.continueGame")
+          div(data-bind="foreach: array()")
+            .col-xs-1
+              a.btn.btn-block.btn-lg.btn-puzzle ?
+        div(data-bind="visible: $root.isEndgame")
+          div(data-bind="foreach: array()")
+            .col-xs-1
+              a.btn.btn-block.btn-lg(data-bind="text: $data+1, css: $parent.class($data)") 
         .col-xs-2
           a.btn.btn-block.btn-lg.btn-puzzle
             span.fui-checkbox-checked
