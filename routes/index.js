@@ -71,16 +71,13 @@ var numToArray = function (num) {
 var evalGuess = function (solution, guess) {
     var inp = 0;
     var out = 0;
-    var tmp = [];
-    for (var i = 0; i < holes; i++)
-        tmp.push(solution[i]);
-
+    
     for (var i = 0; i < holes; i++) {
-        if (tmp[i] == guess[i]) {
+        if (solution[i] == guess[i]) {
             inp++;
-            tmp[i] = -1;
-            guess[i] = -2;
-        } 
+        } else if (solution.indexOf(guess[i]) >= 0) {
+            out++;
+        }
     }
     for (var i = 0; i < holes; i++) {
         for (var j = 0; j < holes; j++) {
