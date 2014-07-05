@@ -338,3 +338,25 @@ body > .container {
 .teste .fui-checkbox-checked, .teste .fui-checkbox-unchecked {
     margin-right: 2px;
 }
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #8f7a66;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #bbada0;
+  border-color: #bbada0;
+}
+
+body {
+  background-color: #eeeeff;
+}
+footer {
+background-color: #ddf;
+color: #555;
+}

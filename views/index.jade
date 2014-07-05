@@ -21,7 +21,14 @@ html(lang="en")
       .demo-headline
         h1.demo-logo
           | Mastermind
-          small Classic game, refurbished
+          small 6 colors, 4 positions, find the hidden code
+      div
+        .row.demo-row.teste
+          .col-xs-2
+          .col-xs-5
+          .col-xs-2
+            a.btn.btn-block.btn-primary New Game
+
       div(data-bind="foreach: playerGuesses")
         .row.demo-row.teste
           .col-xs-3
