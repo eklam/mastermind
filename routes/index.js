@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
 });
 
 var generateProblem = function () {
-    var available = range(holes);
+    var available = range(colors);
     var array = [];
     for (var i = 0; i < holes; i++) {
 
