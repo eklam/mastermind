@@ -59,8 +59,6 @@ function AppViewModel() {
 
     self.tryGuess = function () {
 
-        console.log('Remaining tries: ' + self.tries().length);
-
         self.isEndgame(self.tries().length == 0);
 
         if (self.tries().length >= 0) {
@@ -72,8 +70,6 @@ function AppViewModel() {
             self.tries.pop();
 
             $.getJSON("/eval/" + publicKey + "/" + self.arrayToNum(_array), function (data) {
-                console.log('data: ')
-                console.log(data)
 
                 lastGuess().eval().inp(data.eval.inplace);
                 lastGuess().eval().out(data.eval.outplace);
@@ -91,7 +87,6 @@ var publicKey = null;
 
 $.getJSON("/problem", function (data) {
     publicKey = data.publicKey;
-    console.log('publicKey: '+publicKey);
 });
 
     // Activates knockout.js

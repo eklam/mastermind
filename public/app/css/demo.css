@@ -334,9 +334,12 @@ body > .container {
     background-color: #444;
 }
 
-.teste .col-xs-1, .teste .col-xs-2 {padding: 3px!important;}
-.teste .fui-checkbox-checked, .teste .fui-checkbox-unchecked {
+.demo-row .col-xs-1, .demo-row .col-xs-2 {padding: 3px!important;}
+.demo-row .fui-checkbox-checked, .demo-row .fui-checkbox-unchecked {
     margin-right: 2px;
+}
+.above{
+  padding-bottom: 15px;
 }
 
 .btn-primary {
@@ -360,3 +363,4 @@ footer {
 background-color: #ddf;
 color: #555;
 }
+a.link {color:#34495e;font-weight: bold;}
