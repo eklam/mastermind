@@ -46,9 +46,9 @@ html(lang="en")
             a.btn.btn-block.btn-lg.btn-default
               &nbsp;
               span(data-bind="foreach: range(eval().inp())")
-                span.fui-checkbox-checked
+                span.fui-checkbox-checked(title="Right Color & Position")
               span(data-bind="foreach: range(eval().out())")
-                span.fui-checkbox-unchecked
+                span.fui-checkbox-unchecked(title="Right Color & Wrong Position")
       div(data-bind="visible: continueGame")
         .row.demo-row.current(data-bind="with: currentGuess")
           .col-xs-2

@@ -37,3 +37,6 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+
+# Ide
+.vscode/
